@@ -1,0 +1,6 @@
+@ComplianceEngine_HostAddress = http://localhost:5070
+
+GET {{ComplianceEngine_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
