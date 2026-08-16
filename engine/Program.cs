@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using ComplianceEngine.Data;
+using ComplianceEngine.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ComplianceDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
+builder.Services.AddScoped<RuleEvaluationService>();
 
 var app = builder.Build();
 
