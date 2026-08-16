@@ -1,0 +1,39 @@
+# Build outputs
+[Bb]in/
+[Oo]bj/
+**/*.dll
+**/*.pdb
+**/*.cache
+**/*.sourcelink.json
+
+# Visual Studio
+.vs/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Rider
+.idea/
+
+# Entity Framework
+*.db
+*.db-shm
+*.db-wal
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*~
+*.bak
+
+# Test results
+TestResults/
+*.trx
+
+# NuGet
+*.nupkg
+packages/
+*.snupkg

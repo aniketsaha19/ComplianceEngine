@@ -93,3 +93,4 @@
 /Users/aniketsaha/Desktop/ComplianceEngine/engine/ComplianceEngine.Tests/obj/Debug/net10.0/ComplianceEngine.Tests.pdb
 /Users/aniketsaha/Desktop/ComplianceEngine/engine/ComplianceEngine.Tests/obj/Debug/net10.0/ComplianceEngine.Tests.genruntimeconfig.cache
 /Users/aniketsaha/Desktop/ComplianceEngine/engine/ComplianceEngine.Tests/obj/Debug/net10.0/ref/ComplianceEngine.Tests.dll
+/Users/aniketsaha/Desktop/ComplianceEngine/engine/ComplianceEngine.Tests/obj/Debug/net10.0/ComplianceEngine.Tests.sourcelink.json
