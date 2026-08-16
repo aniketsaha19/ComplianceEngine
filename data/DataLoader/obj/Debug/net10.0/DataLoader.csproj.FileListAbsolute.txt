@@ -58,3 +58,4 @@
 /Users/aniketsaha/Desktop/ComplianceEngine/data/DataLoader/obj/Debug/net10.0/DataLoader.pdb
 /Users/aniketsaha/Desktop/ComplianceEngine/data/DataLoader/obj/Debug/net10.0/DataLoader.genruntimeconfig.cache
 /Users/aniketsaha/Desktop/ComplianceEngine/data/DataLoader/obj/Debug/net10.0/ref/DataLoader.dll
+/Users/aniketsaha/Desktop/ComplianceEngine/data/DataLoader/obj/Debug/net10.0/DataLoader.sourcelink.json
