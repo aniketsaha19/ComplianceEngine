@@ -22,6 +22,7 @@ technically credible, demoable.
 ## Current status: what is already built and working
 
 ### `/data`
+
 - `sp500-prices.csv` — 26 years of daily OHLCV, 472 S&P 500 tickers (Kaggle:
   jacksaleeby/s-and-p500-historical-data)
 - `ticker-sectors.csv` — hand-built ticker→sector mapping, verified 1:1 against
@@ -35,6 +36,7 @@ technically credible, demoable.
     breach scenario.
 
 ### `/engine`
+
 - .NET 10 Web API (`ComplianceEngine`), SDK pinned via `global.json`
 - SQL Server via Docker, connected through the mssql VS Code extension
 - EF Core schema, migrated and live: `Portfolios`, `Holdings`, `Rules`,

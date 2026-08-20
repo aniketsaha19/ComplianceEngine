@@ -11,4 +11,5 @@ public class ComplianceDbContext : DbContext
     public DbSet<Holding> Holdings => Set<Holding>();
     public DbSet<Rule> Rules => Set<Rule>();
     public DbSet<RuleEvaluation> RuleEvaluations => Set<RuleEvaluation>();
+    public DbSet<MarketPriceHistory> MarketPriceHistory => Set<MarketPriceHistory>();
 }
