@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "compliance-engine": {
+      "command": "python",
+      "args": ["-c", "import sys; sys.path.insert(0, '/Users/aniketsaha/Desktop/ComplianceEngine/mcp-server'); exec(open('/Users/aniketsaha/Desktop/ComplianceEngine/mcp-server/server.py').read())"],
+      "env": {
+        "PYTHONPATH": "/Users/aniketsaha/Desktop/ComplianceEngine/mcp-server"
+      }
+    }
+  }
+}

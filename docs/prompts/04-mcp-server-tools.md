@@ -46,7 +46,7 @@ than returning an empty result.
 
 ## Acceptance criteria
 1. `dotnet run` in `/engine` is running, with at least one compliant and
-   one non-compliant portfolio available (from Task 01).
+   one non-compliant portfolio available (from Task 01). If not available check in database which is compliant and not compliant
 2. Call each of the three tools directly (via whatever test harness the MCP
    SDK provides, or a simple Python script that invokes them) against a real
    portfolio ID and confirm the response matches what `curl` against the
