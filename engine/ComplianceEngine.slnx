@@ -1,5 +1,0 @@
-<Solution>
-  <Project Path="../data/DataLoader/DataLoader.csproj" />
-  <Project Path="ComplianceEngine.csproj" />
-  <Project Path="ComplianceEngine.Tests/ComplianceEngine.Tests.csproj" />
-</Solution>

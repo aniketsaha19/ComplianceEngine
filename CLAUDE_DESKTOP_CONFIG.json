@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "compliance-engine": {
+      "command": "npx",
+      "args": [
+        "mcp-remote",
+        "http://localhost:3000/mcp/message",
+        "--header", "Authorization: Bearer DEMO_TENANT:sgX6SSIhaQcC8MhOPcWW85QalWZXUA1B"
+      ],
+      "env": {
+        "MCP_DEBUG": "true"
+      }
+    }
+  }
+}

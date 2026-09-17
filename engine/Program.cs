@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using ComplianceEngine.Data;
 using ComplianceEngine.Services;
+using ComplianceEngine.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,9 @@ builder.Services.AddDbContext<ComplianceDbContext>(options =>
 builder.Services.AddScoped<RuleEvaluationService>();
 
 var app = builder.Build();
+
+// Use custom tenant authentication middleware (must be before authorization)
+app.UseTenantAuthentication();
 
 if (app.Environment.IsDevelopment())
 {
