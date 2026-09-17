@@ -4,6 +4,7 @@ using ComplianceEngine.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ComplianceEngine.Migrations
 {
     [DbContext(typeof(ComplianceDbContext))]
-    partial class ComplianceDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260917124444_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,46 +24,6 @@ namespace ComplianceEngine.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("ComplianceEngine.Models.ApiKey", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("KeyHash")
-                        .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("nvarchar(64)");
-
-                    b.Property<string>("Label")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<DateTime?>("LastUsedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("RevokedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("TenantId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("KeyHash")
-                        .IsUnique();
-
-                    b.HasIndex("TenantId");
-
-                    b.ToTable("ApiKeys");
-                });
 
             modelBuilder.Entity("ComplianceEngine.Models.Holding", b =>
                 {
@@ -222,13 +185,13 @@ namespace ComplianceEngine.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("ApiKeyHash")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("nvarchar(64)");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -238,14 +201,9 @@ namespace ComplianceEngine.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
-                    b.Property<string>("PasswordHash")
-                        .IsRequired()
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("Email")
+                    b.HasIndex("ApiKeyHash")
                         .IsUnique();
 
                     b.ToTable("Tenants");
@@ -306,17 +264,6 @@ namespace ComplianceEngine.Migrations
 
                             t.HasCheckConstraint("CK_Trade_Status", "[Status] IN ('EXECUTED', 'BLOCKED')");
                         });
-                });
-
-            modelBuilder.Entity("ComplianceEngine.Models.ApiKey", b =>
-                {
-                    b.HasOne("ComplianceEngine.Models.Tenant", "Tenant")
-                        .WithMany("ApiKeys")
-                        .HasForeignKey("TenantId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Tenant");
                 });
 
             modelBuilder.Entity("ComplianceEngine.Models.Holding", b =>
@@ -396,8 +343,6 @@ namespace ComplianceEngine.Migrations
 
             modelBuilder.Entity("ComplianceEngine.Models.Tenant", b =>
                 {
-                    b.Navigation("ApiKeys");
-
                     b.Navigation("Portfolios");
 
                     b.Navigation("Rules");

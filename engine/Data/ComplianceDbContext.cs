@@ -8,6 +8,7 @@ public class ComplianceDbContext : DbContext
     public ComplianceDbContext(DbContextOptions<ComplianceDbContext> options) : base(options) { }
 
     public DbSet<Tenant> Tenants => Set<Tenant>();
+    public DbSet<ApiKey> ApiKeys => Set<ApiKey>();
     public DbSet<Portfolio> Portfolios => Set<Portfolio>();
     public DbSet<Holding> Holdings => Set<Holding>();
     public DbSet<Trade> Trades => Set<Trade>();
@@ -23,9 +24,24 @@ public class ComplianceDbContext : DbContext
         {
             entity.HasKey(e => e.Id);
             entity.Property(e => e.Name).IsRequired().HasMaxLength(200);
-            entity.Property(e => e.ApiKeyHash).IsRequired().HasMaxLength(64);
-            entity.HasIndex(e => e.ApiKeyHash).IsUnique();
+            entity.Property(e => e.Email).IsRequired().HasMaxLength(256);
+            entity.HasIndex(e => e.Email).IsUnique();
+            entity.Property(e => e.PasswordHash).IsRequired().HasMaxLength(256);
             entity.Property(e => e.CreatedAt).IsRequired();
+        });
+
+        // API keys (one tenant, many keys — one per MCP login session)
+        modelBuilder.Entity<ApiKey>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.KeyHash).IsRequired().HasMaxLength(64);
+            entity.HasIndex(e => e.KeyHash).IsUnique();
+            entity.Property(e => e.Label).HasMaxLength(100);
+            entity.Property(e => e.CreatedAt).IsRequired();
+            entity.HasOne(e => e.Tenant)
+                  .WithMany(t => t.ApiKeys)
+                  .HasForeignKey(e => e.TenantId)
+                  .OnDelete(DeleteBehavior.Cascade);
         });
 
         // Portfolios

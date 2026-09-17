@@ -23,7 +23,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+// No HTTPS redirection: in production the engine sits behind an ingress that terminates TLS and
+// forwards plain HTTP internally, so redirecting here would break every gateway -> engine call.
 app.UseAuthorization();
 app.MapControllers();
 app.Run();

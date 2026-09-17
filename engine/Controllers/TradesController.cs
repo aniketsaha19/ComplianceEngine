@@ -107,6 +107,14 @@ public class TradesController : ControllerBase
         if (tenant == null)
             return Unauthorized("No authenticated tenant");
 
+        // Without this check any tenant could evaluate — and so read — another tenant's portfolio.
+        var owned = await _db.Portfolios
+            .AnyAsync(p => p.Id == request.portfolio_id && p.TenantId == tenant.Id);
+        if (!owned)
+        {
+            return NotFound(new { error = $"Portfolio {request.portfolio_id} not found or not owned by tenant" });
+        }
+
         try
         {
             var tradeRequest = new TradeRequest
