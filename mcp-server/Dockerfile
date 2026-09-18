@@ -1,12 +1,12 @@
-# Build context is the repository root (mcp-server/Dockerfile).
+# Build context is mcp-server/ (the directory passed as appSourcePath).
 FROM node:22-alpine
 WORKDIR /app
 
 # Dependencies first so they cache independently of source changes.
-COPY mcp-server/package.json mcp-server/package-lock.json ./
+COPY package.json package-lock.json ./
 RUN npm ci --omit=dev && npm cache clean --force
 
-COPY mcp-server/src ./src
+COPY src ./src
 
 ENV NODE_ENV=production \
     PORT=3000
